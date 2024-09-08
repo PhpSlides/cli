@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Controller\Api;
+
+use PhpSlides\Http\Request;
+use PhpSlides\Http\ApiController;
+
+final class {{name}} extends ApiController
+{
+	public function index(Request $request)
+	{
+	}
+
+	public function show(Request $request)
+	{
+	}
+
+	public function store(Request $request)
+	{
+	}
+
+	public function update(Request $request)
+	{
+	}
+	
+	public function patch(Request $request)
+	{
+	}
+
+	public function destroy(Request $request)
+	{
+	}
+
+	public function error(Request $request)
+	{
+	}
+
+	public function __default(Request $request)
+	{
+	}
+}

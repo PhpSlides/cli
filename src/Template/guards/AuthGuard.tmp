@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Guards;
+
+use PhpSlides\Http\Auth\AuthGuard;
+
+final class {{name}} extends AuthGuard
+{
+    /**
+     * Implement the authorization logic.
+     *
+     * @return bool
+     */
+    public function authorize(): bool
+    {
+        $body = $this->request->body();
+
+        if (!$body) {
+            echo 'No request body!';
+            return false;
+        }
+        return true;
+    }
+}

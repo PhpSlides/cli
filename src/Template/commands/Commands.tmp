@@ -1,0 +1,40 @@
+ _____  _           _____ _       _
+|  __ \| |         / ____| (.)   | | 
+| |__) | |__  _ __| (___ | |_  __| | ___
+|  ___/| '_ \| '_ \\___ \| | |/ _` |/ _ \
+| |    | | | | |_) |___) | | | (_| |  __/
+|_|    |_| |_| .__/_____/|_|_|\__,_|\___|
+             | |
+             |_|
+
+Usage: php slide [command] [options] [...args]
+
+Commands:
+  serve                                 Run and serve the PhpSlides project in development mode.
+  make:controller [name] <options>      Create a route controller class.
+  make:api-controller [name] <options>  Create an API controller class.
+  make:auth-guard [name] <options>      Create an AuthGuard class.
+  make:forge-db [db] <tables>  Create new Tables & Columns in a Forge Database.
+  generate:secret-key <length>          Generate a random bytes of string used for JWT secret keys for generating tokens.
+  -h, --help                            Show this help message and exit.
+
+Options:
+  --strict                              Enforce strict class standards for the generated code.
+  --host                                Change the default host in serving the project.
+  --port                                Change the default port in serving the project.
+
+Examples:
+  php slide make:controller User --strict
+     Creates a route controller class named `UserController` with strict coding standards.
+
+  php slide make:api-controller Product
+     Creates an API controller class named `ProductController`.
+
+  php slide make:auth-guard Token
+     Creates an AuthGuard class named `TokenGuard`.
+
+  php slide generate:secret-key 20
+     It creates 20 random characters for secret keys.
+Defaults to 32 lengths when no option is given.
+
+For more information on each command, use `php slide <command> --help`.

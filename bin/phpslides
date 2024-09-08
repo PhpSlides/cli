@@ -1,4 +1,9 @@
 #!/usr/bin/env php
 <?php
 
-echo "Welcome To PhpSlides CLI";
+include_once __DIR__ . '/../Console/autoload.php';
+
+shell_exec('composer dump-autoload');
+
+# Handle all console commands...
+new Console();

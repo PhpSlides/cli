@@ -1,0 +1,9 @@
+<?php
+
+namespace Forge\{db_name}\{table_name};
+
+use PhpSlides\Database\Database;
+
+class {table_name} extends Database
+{
+}
