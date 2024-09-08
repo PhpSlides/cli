@@ -8,7 +8,7 @@
 function output(string $message): void
 {
 	for ($i = 0; $i < strlen($message); $i++) {
-		usleep(9000);
+		usleep(7000);
 		echo $message[$i];
 	}
 }

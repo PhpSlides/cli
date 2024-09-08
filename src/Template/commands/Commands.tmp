@@ -7,7 +7,7 @@
              | |
              |_|
 
-Usage: php slide [command] [options] [...args]
+Usage: phpslides [command] [options] [...args]
 
 Commands:
   serve                                 Run and serve the PhpSlides project in development mode.
@@ -24,17 +24,17 @@ Options:
   --port                                Change the default port in serving the project.
 
 Examples:
-  php slide make:controller User --strict
+  phpslides make:controller User --strict
      Creates a route controller class named `UserController` with strict coding standards.
 
-  php slide make:api-controller Product
+  phpslides make:api-controller Product
      Creates an API controller class named `ProductController`.
 
-  php slide make:auth-guard Token
+  phpslides make:auth-guard Token
      Creates an AuthGuard class named `TokenGuard`.
 
-  php slide generate:secret-key 20
+  phpslides generate:secret-key 20
      It creates 20 random characters for secret keys.
 Defaults to 32 lengths when no option is given.
 
-For more information on each command, use `php slide <command> --help`.
+For more information on each command, use `phpslides <command> --help`.

@@ -31,7 +31,7 @@ class Command implements CommandInterface
 			StyleConsole::text(" 1.0.0\n\n", ColorCode::BOLD, ColorCode::GREEN)
 		);
 		output(StyleConsole::text('Usage:', ColorCode::YELLOW, ColorCode::BOLD));
-		output(" php slide [command] [options] [...args]\n\n");
+		output(" phpslides [command] [options] [...args]\n\n");
 		output(
 			StyleConsole::text("Commands:\n", ColorCode::YELLOW, ColorCode::BOLD)
 		);

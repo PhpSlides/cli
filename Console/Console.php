@@ -25,7 +25,8 @@ class Console extends Command implements CommandInterface
 
 		$arguments = array_slice($command, 1);
 		$options = getopt('h', ['help', 'host:', 'port:']);
-		
+
+		print_r($command);
 		if (
 			isset($options['help']) ||
 			isset($options['h']) ||
@@ -83,9 +84,11 @@ class Console extends Command implements CommandInterface
 			default:
 				$styles = [ColorCode::WHITE, ColorCode::BG_RED];
 
-				echo StyleConsole::text(
-					'Command not Recognized! See \'php slide --help\'',
-					...$styles
+				output(
+					StyleConsole::text(
+						'Command not Recognized! See \'phpslide --help\'',
+						...$styles
+					)
 				);
 				break;
 		}
