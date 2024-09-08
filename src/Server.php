@@ -142,12 +142,14 @@ class Server implements ServerInterface
 	/**
 	 * Server constructor.
 	 *
-	 * @param array $options The Host and Port stored in here
+	 * @param array $arguments The Host and Port stored in here
 	 */
-	public function __construct(array $options)
+	public function __construct(array $arguments)
 	{
-		$this->host = isset($options['host']) ? $options['host'] : 'localhost';
-		$this->port = isset($options['port']) ? (int) $options['port'] : 2200;
+		$http = explode(':', $arguments[0] ?? '');
+
+		$this->host = isset($http[0]) ? $http[0] : 'localhost';
+		$this->port = isset($http[1]) ? (int) $http[1] : 2200;
 		$this->resolve = 'src/boostrap/';
 
 		// Check if the provided local address and its port is in use.

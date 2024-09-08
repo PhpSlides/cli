@@ -24,7 +24,7 @@ class Console extends Command implements CommandInterface
 		$command = $argv;
 
 		$arguments = array_slice($command, 2);
-		$options = getopt('h', ['help', 'host:', 'port:']);
+		$options = getopt('h', ['help']);
 
 		if (
 			isset($options['help']) ||
@@ -37,7 +37,7 @@ class Console extends Command implements CommandInterface
 		# Handle commands
 		switch ($command[1]) {
 			case 'serve':
-				self::$serve = $options;
+				self::$serve = $arguments;
 				break;
 
 			case 'make:controller':
