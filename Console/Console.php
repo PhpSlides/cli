@@ -23,20 +23,19 @@ class Console extends Command implements CommandInterface
 		# Check for the command and arguments
 		$command = $argv;
 
-		$arguments = array_slice($command, 1);
+		$arguments = array_slice($command, 2);
 		$options = getopt('h', ['help', 'host:', 'port:']);
 
-		print_r($command);
 		if (
 			isset($options['help']) ||
 			isset($options['h']) ||
-			!isset($command[0])
+			!isset($command[1])
 		) {
 			self::showHelp();
 		}
 
 		# Handle commands
-		switch ($command[0]) {
+		switch ($command[1]) {
 			case 'serve':
 				self::$serve = $options;
 				break;
