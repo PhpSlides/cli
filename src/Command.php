@@ -28,7 +28,7 @@ class Command implements CommandInterface
 			StyleConsole::text('CLI Version', ColorCode::YELLOW, ColorCode::BOLD)
 		);
 		output(
-			StyleConsole::text(" 1.1.0\n\n", ColorCode::BOLD, ColorCode::GREEN)
+			StyleConsole::text(" 1.2.0\n\n", ColorCode::BOLD, ColorCode::GREEN)
 		);
 		output(StyleConsole::text('Usage:', ColorCode::YELLOW, ColorCode::BOLD));
 		output(" phpslides [command] [options] [...args]\n\n");
