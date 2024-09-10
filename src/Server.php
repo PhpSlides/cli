@@ -146,11 +146,19 @@ class Server implements ServerInterface
 	 */
 	public function __construct(array $arguments)
 	{
+	   
+		// checks if directory is a PhpSlides project
+		if (!is_file('src/bootstrap/app.php')) {
+			output(StyleConsole::bgRed('Error: '));
+			output(StyleConsole::bold(" Not a PhpSlides project directory\n"));
+			exit();
+		}
+	   
 		$http = explode(':', $arguments[0] ?? '');
 
-		$this->host = isset($http[0]) ? $http[0] : 'localhost';
+		$this->host = !empty($http[0]) ? $http[0] : 'localhost';
 		$this->port = isset($http[1]) ? (int) $http[1] : 2200;
-		$this->resolve = 'src/boostrap/';
+		$this->resolve = 'src/bootstrap/';
 
 		// Check if the provided local address and its port is in use.
 		if ($this->isPortInUse()) {
