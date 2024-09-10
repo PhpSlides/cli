@@ -4,7 +4,7 @@ class Command implements CommandInterface
 {
 	/**
 	 * SHOW HELP MESSAGE IN THE StyleConsole
-	 * --help command
+	 * `--help` command
 	 */
 	public static function showHelp(): void
 	{
@@ -28,12 +28,16 @@ class Command implements CommandInterface
 			StyleConsole::text('CLI Version', ColorCode::YELLOW, ColorCode::BOLD)
 		);
 		output(
-			StyleConsole::text(" 1.0.0\n\n", ColorCode::BOLD, ColorCode::GREEN)
+			StyleConsole::text(" 1.1.0\n\n", ColorCode::BOLD, ColorCode::GREEN)
 		);
 		output(StyleConsole::text('Usage:', ColorCode::YELLOW, ColorCode::BOLD));
 		output(" phpslides [command] [options] [...args]\n\n");
 		output(
 			StyleConsole::text("Commands:\n", ColorCode::YELLOW, ColorCode::BOLD)
+		);
+		output(StyleConsole::green('  create <name>'));
+		output(
+			"                Initialize and create a new PhpSlides project in current directory\n"
 		);
 		output(StyleConsole::green('  serve'));
 		output(
@@ -74,13 +78,64 @@ class Command implements CommandInterface
 	}
 
 	/**
-	 * MAKE CONTROLLER CLASS AND ADD FILES IN THE CONTROLLER LOCATION
-	 * make:controller command
+	 * CREATE A NEW PROJECT WOTH COMPOSER
+	 * `create project-name` command
 	 *
-	 * @param array $arguments It contains details of the database to create
+	 * @param array $arguments It contains details of the project to create
+	 */
+	public static function createProject(array $arguments): void
+	{
+		if (!isset($arguments[0])) {
+			output(StyleConsole::bgRed('Error: '));
+			output(StyleConsole::bold(" Project name is required.\n"));
+			exit();
+		}
+		$name = $arguments[0];
+
+		if (is_dir($name)) {
+			output(StyleConsole::bgRed('Error: '));
+			output(
+				StyleConsole::bold(
+					" Project directory \"./$name\" already exists.\n"
+				)
+			);
+			exit();
+		}
+
+		output("Creating project at \"./$name\"\n");
+		$sourceDir = __DIR__ . '/../project';
+
+		// Windows
+		if (PHP_OS === 'WINNT') {
+			$command = 'xcopy /e /i /y ' . $sourceDir . ' ./' . $name;
+		}
+		// macOS (Darwin) & Linux/Unix
+		else {
+			$command = 'cp -r ' . $sourceDir . ' ./' . $name;
+		}
+		shell_exec($command);
+
+		output("\nRun command:\n");
+		output(StyleConsole::green("cd $name && composer install\n"));
+		exit();
+	}
+
+	/**
+	 * MAKE CONTROLLER CLASS AND ADD FILES IN THE CONTROLLER LOCATION
+	 * `make:controller` command
+	 *
+	 * @param array $arguments It contains details of the controller to create
 	 */
 	public static function makeController(array $arguments): void
 	{
+		// checks if directory is a PhpSlides project
+		if (!is_file('src/bootstrap/app.php')) {
+			output(StyleConsole::bgRed('Error: '));
+			output(StyleConsole::bold(" Not a PhpSlides project directory\n"));
+			exit();
+		}
+		shell_exec('composer dump-autoload');
+
 		$cn = $arguments[0];
 		$ct = $arguments[1] ?? null;
 
@@ -134,11 +189,20 @@ class Command implements CommandInterface
 
 	/**
 	 * MAKE API CONTROLLER CLASS
+	 * `make:api-controller` command
 	 *
-	 * @param array $arguments It contains details of the database to create
+	 * @param array $arguments It contains details of the api controller to create
 	 */
 	public static function makeApiController(array $arguments): void
 	{
+		// checks if directory is a PhpSlides project
+		if (!is_file('src/bootstrap/app.php')) {
+			output(StyleConsole::bgRed('Error: '));
+			output(StyleConsole::bold(" Not a PhpSlides project directory\n"));
+			exit();
+		}
+		shell_exec('composer dump-autoload');
+
 		$cn = $arguments[0];
 		$ct = $arguments[1] ?? null;
 
@@ -194,12 +258,20 @@ class Command implements CommandInterface
 
 	/**
 	 * MAKE AUTHENTICATION GUARD FOR ROUTES
-	 * make:auth-guard command
+	 * `make:auth-guard` command
 	 *
-	 * @param array $arguments It contains details of the database to create
+	 * @param array $arguments It contains details of the authentication guard to create
 	 */
 	public static function makeAuthGuard(array $arguments): void
 	{
+		// checks if directory is a PhpSlides project
+		if (!is_file('src/bootstrap/app.php')) {
+			output(StyleConsole::bgRed('Error: '));
+			output(StyleConsole::bold(" Not a PhpSlides project directory\n"));
+			exit();
+		}
+		shell_exec('composer dump-autoload');
+
 		$cn = $arguments[0];
 		$ct = $arguments[1] ?? null;
 
@@ -254,9 +326,9 @@ class Command implements CommandInterface
 
 	/**
 	 * GENERATE SECRET KEY FOR JWT USE
-	 * generate:secret-key command
+	 * `generate:secret-key` command
 	 *
-	 * @param array $arguments It contains details of the database to create
+	 * @param array $arguments It contains details of the secret key length to create
 	 */
 	public static function generateSecretKey(array $arguments): void
 	{
@@ -264,17 +336,24 @@ class Command implements CommandInterface
 		$key = base64_encode(random_bytes((int) $length));
 
 		output(StyleConsole::bold("\n$key\n"));
-		exit();
+		exit(1);
 	}
 
 	/**
 	 * CREATE A DATABASE USING THE FORGE COMMAND
-	 * make:forge-db command
+	 * `make:forge-db` command
 	 *
 	 * @param array $arguments It contains details of the database to create
 	 */
 	public static function makeForgeDB(array $arguments): void
 	{
+		// checks if directory is a PhpSlides project
+		if (!is_file('src/bootstrap/app.php')) {
+			output(StyleConsole::bgRed('Error: '));
+			output(StyleConsole::bold(" Not a PhpSlides project directory\n"));
+			exit();
+		}
+
 		$db_name = $arguments[0];
 		$table_name = $arguments[1] ?? null;
 		$column_name = $arguments[2] ?? null;
@@ -329,6 +408,7 @@ class Command implements CommandInterface
 
 		if (!file_exists($dir . "/$table_name.php")) {
 			file_put_contents($dir . "/$table_name.php", $content);
+			shell_exec('composer dump-autoload');
 		}
 
 		/**
@@ -377,5 +457,6 @@ class Command implements CommandInterface
 
 		usleep(300000);
 		output(StyleConsole::green("Done ✅ \n"));
+		exit(1);
 	}
 }

@@ -3,6 +3,14 @@
 interface CommandInterface
 {
 	/**
+	 * CREATE A NEW PROJECT WOTH COMPOSER
+	 * `create project-name` command
+	 *
+	 * @param array $arguments It contains details of the project to create
+	 */
+	public static function createProject(array $arguments): void;
+
+	/**
 	 * SHOW HELP MESSAGE IN THE StyleConsole
 	 * --help command
 	 */
@@ -10,7 +18,7 @@ interface CommandInterface
 
 	/**
 	 * MAKE CONTROLLER CLASS AND ADD FILES IN THE CONTROLLER LOCATION
-	 * make:controller command
+	 * `make:controller` command
 	 *
 	 * @param array $arguments It contains details of the database to create
 	 */
@@ -18,6 +26,7 @@ interface CommandInterface
 
 	/**
 	 * MAKE API CONTROLLER CLASS
+	 * `make:api-controller` command
 	 *
 	 * @param array $arguments It contains details of the database to create
 	 */
@@ -25,7 +34,7 @@ interface CommandInterface
 
 	/**
 	 * MAKE AUTHENTICATION GUARD FOR ROUTES
-	 * make:auth-guard command
+	 * `make:auth-guard` command
 	 *
 	 * @param array $arguments It contains details of the database to create
 	 */
@@ -33,15 +42,15 @@ interface CommandInterface
 
 	/**
 	 * GENERATE SECRET KEY FOR JWT USE
-	 * generate:secret-key command
+	 * `generate:secret-key` command
 	 *
 	 * @param array $arguments It contains details of the database to create
 	 */
 	public static function generateSecretKey(array $arguments): void;
-	
+
 	/**
 	 * CREATE A DATABASE USING THE FORGE COMMAND
-	 * make:forge-db command
+	 * `make:forge-db` command
 	 *
 	 * @param array $arguments It contains details of the database to create
 	 */

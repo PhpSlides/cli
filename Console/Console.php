@@ -35,9 +35,13 @@ class Console extends Command implements CommandInterface
 		}
 
 		# Handle commands
-		switch ($command[1]) {
+		switch (trim($command[1])) {
 			case 'serve':
 				self::$serve = $arguments;
+				break;
+
+			case 'create':
+				self::$commands = ['create-project', $arguments];
 				break;
 
 			case 'make:controller':
@@ -103,22 +107,31 @@ class Console extends Command implements CommandInterface
 		}
 
 		if (self::$commands) {
-			switch (self::$commands[0]) {
+			switch (trim(self::$commands[0])) {
+				case 'create-project':
+					self::createProject(self::$commands[1]);
+					break;
+
 				case 'controller':
 					self::makeController(self::$commands[1]);
 					break;
+
 				case 'api-controller':
 					self::makeApiController(self::$commands[1]);
 					break;
+
 				case 'auth-guard':
 					self::makeAuthGuard(self::$commands[1]);
 					break;
+
 				case 'forge-db':
 					self::makeForgeDB(self::$commands[1]);
 					break;
+
 				case 'secret-key':
 					self::generateSecretKey(self::$commands[1]);
 					break;
+
 				default:
 					exit('Error.');
 			}
