@@ -30,13 +30,13 @@ To install the `phpslides` CLI tool globally, follow these steps:
 
 ## Usage
 
-Once installed, you can use the `phpslides` command to interact with your PhpSlides projects. Below are the available commands:
-
 To verify the installation run command:
 
 ```bash
 phpslides
 ```
+
+Once installed, you can use the `phpslides` command to interact with your PhpSlides projects. Below are the available commands:
 
 ### Examples
 
