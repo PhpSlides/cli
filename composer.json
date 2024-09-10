@@ -2,14 +2,12 @@
 	"name": "phpslides/cli",
 	"description": "CLI tool for PhpSlides Framework",
 	"license": "MIT",
-	"autoload": {},
 	"authors": [
 		{
 			"name": "dconco",
 			"email": "concodave@gmail.com"
 		}
 	],
-	"bin": [ "bin/phpslides" ],
-	"minimum-stability": "stable",
-	"require": {}
+	"bin": ["bin/phpslides"],
+	"minimum-stability": "stable"
 }
