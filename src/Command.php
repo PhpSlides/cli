@@ -28,7 +28,7 @@ class Command implements CommandInterface
 			StyleConsole::text('CLI Version', ColorCode::YELLOW, ColorCode::BOLD)
 		);
 		output(
-			StyleConsole::text(" 1.2.0\n\n", ColorCode::BOLD, ColorCode::GREEN)
+			StyleConsole::text(" 1.2.1\n\n", ColorCode::BOLD, ColorCode::GREEN)
 		);
 		output(StyleConsole::text('Usage:', ColorCode::YELLOW, ColorCode::BOLD));
 		output(" phpslides [command] [options] [...args]\n\n");
@@ -60,15 +60,7 @@ class Command implements CommandInterface
 		);
 		output(StyleConsole::green('  --strict'));
 		output(
-			"                     Enforce strict class standards in the code.\n"
-		);
-		output(StyleConsole::green('  --host'));
-		output(
-			"                       Change the default host in serving the project.\n"
-		);
-		output(StyleConsole::green('  --port'));
-		output(
-			"                       Change the default port in serving the project.\n\n"
+			"                     Enforce strict class standards in the code.\n\n"
 		);
 
 		/*output(file_get_contents(
@@ -129,7 +121,7 @@ class Command implements CommandInterface
 	public static function makeController(array $arguments): void
 	{
 		// checks if directory is a PhpSlides project
-		if (!is_file('src/bootstrap/app.php')) {
+		if (!is_file('src/routes/render.php')) {
 			output(StyleConsole::bgRed('Error: '));
 			output(StyleConsole::bold(" Not a PhpSlides project directory\n"));
 			exit();
@@ -196,7 +188,7 @@ class Command implements CommandInterface
 	public static function makeApiController(array $arguments): void
 	{
 		// checks if directory is a PhpSlides project
-		if (!is_file('src/bootstrap/app.php')) {
+		if (!is_file('src/routes/render.php')) {
 			output(StyleConsole::bgRed('Error: '));
 			output(StyleConsole::bold(" Not a PhpSlides project directory\n"));
 			exit();
@@ -265,7 +257,7 @@ class Command implements CommandInterface
 	public static function makeAuthGuard(array $arguments): void
 	{
 		// checks if directory is a PhpSlides project
-		if (!is_file('src/bootstrap/app.php')) {
+		if (!is_file('src/routes/render.php')) {
 			output(StyleConsole::bgRed('Error: '));
 			output(StyleConsole::bold(" Not a PhpSlides project directory\n"));
 			exit();
@@ -348,7 +340,7 @@ class Command implements CommandInterface
 	public static function makeForgeDB(array $arguments): void
 	{
 		// checks if directory is a PhpSlides project
-		if (!is_file('src/bootstrap/app.php')) {
+		if (!is_file('src/routes/render.php')) {
 			output(StyleConsole::bgRed('Error: '));
 			output(StyleConsole::bold(" Not a PhpSlides project directory\n"));
 			exit();
@@ -364,15 +356,15 @@ class Command implements CommandInterface
 		!is_dir('app') && mkdir('app');
 
 		# If there's no database directory, create it.
-		if (!is_dir("app/Forge/$db_name")) {
-			!is_dir('app/Forge') && mkdir('app/Forge');
+		if (!is_dir("app/Forgery/$db_name")) {
+			!is_dir('app/Forgery') && mkdir('app/Forgery');
 
 			output(StyleConsole::green("Creating Database…\n"));
-			mkdir("app/Forge/$db_name");
+			mkdir("app/Forgery/$db_name");
 
 			copy(
 				__DIR__ . '/Template/database/options.sql',
-				"app/Forge/$db_name/options.sql"
+				"app/Forgery/$db_name/options.sql"
 			);
 		} else {
 			output(
@@ -383,7 +375,7 @@ class Command implements CommandInterface
 		}
 		usleep(300000);
 
-		$dir = "app/Forge/$db_name/$table_name";
+		$dir = "app/Forgery/$db_name/$table_name";
 
 		# Checks if the table already exists, else create it
 		if (is_dir($dir)) {
@@ -400,7 +392,7 @@ class Command implements CommandInterface
 		output(StyleConsole::green("Adding columns…\n"));
 
 		/**
-		 * Get content from the template Forge file
+		 * Get content from the template Forgery file
 		 */
 		$content = file_get_contents(__DIR__ . '/Template/database/Forge.tmp');
 		$content = str_replace('{table_name}', $table_name, $content);

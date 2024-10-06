@@ -17,17 +17,17 @@
 
 return [
 	/*
-	 *? Specific domains that are allowed to access your resources.
+	 * Specific domains that are allowed to access your resources.
 	 */
 	'allow_origin' => '*',
 
 	/*
-	 *? The HTTP methods that are allowed for CORS requests.
+	 * The HTTP methods that are allowed for CORS requests.
 	 */
 	'allow_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 
 	/*
-	 *? Headers that are allowed in CORS requests.
+	 * Headers that are allowed in CORS requests.
 	 */
 	'allow_headers' => [
 		'Content-Type',
@@ -40,22 +40,22 @@ return [
 	],
 
 	/*
-	 *? Headers that browsers are allowed to access.
+	 * Headers that browsers are allowed to access.
 	 */
-	#	'expose_headers' => ['Content-Length', 'Content-Range', 'X-Custom-Header'],
+	 'expose_headers' => ['Content-Length', 'Content-Range', 'X-Custom-Header'],
 
 	/*
-	 *? The maximum time (in seconds) the results of a preflight request can be cached.
+	 * The maximum time (in seconds) the results of a preflight request can be cached.
 	 */
 	'max_age' => 3600,
 
 	/*
-	 *? Indicates whether the request can include user credentials.
+	 * Indicates whether the request can include user credentials.
 	 */
 	'allow_credentials' => true,
 
 	/*
-	 *? Another toggle for allowing credentials, ensuring clarity.
+	 * Another toggle for allowing credentials, ensuring clarity.
 	 */
 	'supports_credentials' => true
 ];

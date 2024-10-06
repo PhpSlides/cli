@@ -1,0 +1,16 @@
+/node_modules
+/public/build
+/public/storage
+/storage/*.key
+/vendor
+/.idea
+/.vscode
+.log
+.env
+.env.dev
+.env.development
+log
+*.log
+access_log
+composer.lock
+composer.phar

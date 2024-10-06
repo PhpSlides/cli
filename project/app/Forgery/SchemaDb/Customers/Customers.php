@@ -1,6 +1,6 @@
 <?php
 
-namespace Forge\SchemaDb\Customers;
+namespace Forgery\SchemaDb\Customers;
 
 use PhpSlides\Database\Database;
 

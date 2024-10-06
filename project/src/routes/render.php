@@ -1,7 +1,10 @@
 <?php
 
+use PhpSlides\Route;
 use PhpSlides\Foundation\Render;
 use PhpSlides\Loader\FileLoader;
+
+include __DIR__ . '/../../vendor/autoload.php';
 
 /**
  * -----------------------------------------------------

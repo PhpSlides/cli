@@ -14,8 +14,8 @@
 
 <head>
    <title>Dashboard | PhpSlides</title>
-   <include path="./components/Header.php" />
-
+   <include path="components/Header.php" />
+   
    <style>
    .logo {
       width: 45%;
@@ -52,12 +52,13 @@
 <body>
    <div class="container">
       <div class="logo">
-         <img src={{ asset('Assets::Logo.svg') }} alt="PhpSlides Logo">
+         <img src={{ import('../assets/logo.svg') }} alt="PhpSlides Logo">
       </div>
 
       <div class="description">
          <p>
             PhpSlides let you create a secured Routing in php and secured API, which prevents SQL injections, and from XSS attack & CSRF.
+            <br>
          </p>
          <p>
             <a href="//packagist.org/packages/phpslides/phpslides" class="link">

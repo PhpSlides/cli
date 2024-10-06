@@ -49,7 +49,7 @@ class Server implements ServerInterface
 			$this->host,
 			$this->port,
 			$this->resolve,
-			$this->resolve . 'app.php'
+			$this->resolve . 'render.php'
 		);
 
 		$this->process = proc_open($command, $descriptorspec, $pipes);
@@ -85,7 +85,7 @@ class Server implements ServerInterface
 			);
 			output(
 				StyleConsole::text(
-					"Type 'stop' or Ctrl+C to stop the server.",
+					'Type q + enter or Ctrl+C to stop the server.',
 					ColorCode::BG_CYAN,
 					ColorCode::BOLD
 				)
@@ -129,14 +129,14 @@ class Server implements ServerInterface
 	 */
 	public function showCommands(): void
 	{
-		output(StyleConsole::green('stop'));
-		output("    - Stop the server\n");
-		output(StyleConsole::green('status'));
-		output("  - Display server status\n");
-		output(StyleConsole::green('restart'));
-		output(" - Restart the server\n");
-		output(StyleConsole::green('help'));
-		output("    - Display this help message\n\n");
+		output(StyleConsole::green(' q + enter'));
+		output("  -  Stop the server\n");
+		output(StyleConsole::green(' s + enter'));
+		output("  -  Display server status\n");
+		output(StyleConsole::green(' r + enter'));
+		output("  -  Restart the server\n");
+		output(StyleConsole::green(' h + enter'));
+		output("  -  Display this help message\n\n");
 	}
 
 	/**
@@ -146,19 +146,18 @@ class Server implements ServerInterface
 	 */
 	public function __construct(array $arguments)
 	{
-	   
 		// checks if directory is a PhpSlides project
-		if (!is_file('src/bootstrap/app.php')) {
+		if (!is_file('src/routes/render.php')) {
 			output(StyleConsole::bgRed('Error: '));
 			output(StyleConsole::bold(" Not a PhpSlides project directory\n"));
 			exit();
 		}
-	   
+
 		$http = explode(':', $arguments[0] ?? '');
 
 		$this->host = !empty($http[0]) ? $http[0] : 'localhost';
 		$this->port = isset($http[1]) ? (int) $http[1] : 2200;
-		$this->resolve = 'src/bootstrap/';
+		$this->resolve = 'src/routes/';
 
 		// Check if the provided local address and its port is in use.
 		if ($this->isPortInUse()) {
@@ -186,7 +185,7 @@ class Server implements ServerInterface
 		while (true) {
 			$input = fgets(STDIN) ?: ''; // Using STDIN directly
 
-			if (trim($input) === 'stop') {
+			if (trim($input) === 'q') {
 				$this->stopServer();
 				break;
 			}
@@ -210,23 +209,22 @@ class Server implements ServerInterface
 	public function handleInputCommands(string $input): void
 	{
 		switch ($input) {
-			case 'status':
+			case 's':
 				$this->serverStatus();
 				break;
 
-			case 'restart':
+			case 'r':
 				$this->stopServer();
 				$this->startServer();
 				break;
 
-			case 'help':
+			case 'h':
 				output("\nAvailable commands:\n");
 				$this->showCommands();
 				break;
 
 			default:
 				output("Unknown command: $input\n");
-				output("Type 'help' for a list of available commands.\n");
 				break;
 		}
 	}

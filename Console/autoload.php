@@ -15,6 +15,7 @@ include_once __DIR__ . '/../src/Style/StyleConsole.php';
 /**
  * Load all Class
  */
+include_once __DIR__ . '/../src/Loader/HotReload.php';
 include_once __DIR__ . '/../src/Server.php';
 include_once __DIR__ . '/../src/Command.php';
 /**
