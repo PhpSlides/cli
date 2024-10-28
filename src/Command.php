@@ -8,22 +8,23 @@ class Command implements CommandInterface
 	 */
 	public static function showHelp(): void
 	{
-		output(StyleConsole::yellow("______  _           _____ _       _\n"));
-		output(StyleConsole::yellow("|  __ \| |         / ____| (•)   | | \n"));
-		output(
-			StyleConsole::yellow("| |__) | |__  _ __| (___ | |_  __| | ___\n")
+		echo StyleConsole::yellow("______  _           _____ _       _\n");
+		usleep(200000);
+		echo StyleConsole::yellow("|  __ \| |         / ____| (•)   | | \n");
+		usleep(200000);
+		echo StyleConsole::yellow("| |__) | |__  _ __| (___ | |_  __| | ___\n");
+		usleep(200000);
+		echo StyleConsole::yellow(
+			"|  ___/| '_ \| '_ \\\\___ \| | |/ _` |/ _ \\\n"
 		);
-		output(
-			StyleConsole::yellow("|  ___/| '_ \| '_ \\\\___ \| | |/ _` |/ _ \\\n")
-		);
-		output(
-			StyleConsole::yellow("| |    | | | | |_) |___) | | | (_| |  __/\n")
-		);
-		output(
-			StyleConsole::yellow("|_|    |_| |_| .__/_____/|_|_|\__,_|\___|\n")
-		);
-		output(StyleConsole::yellow("             | |\n"));
-		output(StyleConsole::yellow("             |_|\n\n"));
+		usleep(200000);
+		echo StyleConsole::yellow("| |    | | | | |_) |___) | | | (_| |  __/\n");
+		usleep(200000);
+		echo StyleConsole::yellow("|_|    |_| |_| .__/_____/|_|_|\__,_|\___|\n");
+		usleep(200000);
+		echo StyleConsole::yellow("             | |\n");
+		usleep(200000);
+		echo StyleConsole::yellow("             |_|\n\n");
 		output(
 			StyleConsole::text('CLI Version', ColorCode::YELLOW, ColorCode::BOLD)
 		);
@@ -346,8 +347,8 @@ class Command implements CommandInterface
 			exit();
 		}
 
-		$db_name = $arguments[0];
-		$table_name = $arguments[1] ?? null;
+		$db_name = ucfirst($arguments[0]);
+		$table_name = ucfirst($arguments[1]) ?? null;
 		$column_name = $arguments[2] ?? null;
 
 		if (!$table_name) {
@@ -394,7 +395,7 @@ class Command implements CommandInterface
 		/**
 		 * Get content from the template Forgery file
 		 */
-		$content = file_get_contents(__DIR__ . '/Template/database/Forge.tmp');
+		$content = file_get_contents(__DIR__ . '/Template/database/Forgery.tmp');
 		$content = str_replace('{table_name}', $table_name, $content);
 		$content = str_replace('{db_name}', $db_name, $content);
 
@@ -410,9 +411,8 @@ class Command implements CommandInterface
 			$total_columns = 0;
 			$columns = mb_split(' ', $column_name);
 
-			foreach ($columns as $key => $value) {
-				$key += 1;
-				$file = "$dir/$key-$value";
+			foreach ($columns as $value) {
+				$file = "$dir/$value";
 				usleep(300000);
 
 				if (is_file($file)) {

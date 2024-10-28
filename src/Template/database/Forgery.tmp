@@ -1,6 +1,6 @@
 <?php
 
-namespace Forge\{db_name}\{table_name};
+namespace Forgery\{db_name}\{table_name};
 
 use PhpSlides\Database\Database;
 

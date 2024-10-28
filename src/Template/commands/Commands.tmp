@@ -14,7 +14,7 @@ Commands:
   make:controller [name] <options>      Create a route controller class.
   make:api-controller [name] <options>  Create an API controller class.
   make:auth-guard [name] <options>      Create an AuthGuard class.
-  make:forge-db [db] <tables>  Create new Tables & Columns in a Forge Database.
+  make:forge-db [db] <tables> <columns> Create new Tables & Columns in a Forge Database.
   generate:secret-key <length>          Generate a random bytes of string used for JWT secret keys for generating tokens.
   -h, --help                            Show this help message and exit.
 

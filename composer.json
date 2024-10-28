@@ -5,7 +5,7 @@
 	"authors": [
 		{
 			"name": "dconco",
-			"email": "info@dconco.io"
+			"email": "info@dconco.dev"
 		}
 	],
 	"bin": ["bin/phpslides"],
