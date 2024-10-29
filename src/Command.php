@@ -411,8 +411,9 @@ class Command implements CommandInterface
 			$total_columns = 0;
 			$columns = mb_split(' ', $column_name);
 
-			foreach ($columns as $value) {
-				$file = "$dir/$value";
+			foreach ($columns as $key => $value) {
+				$key += 1;
+				$file = "$dir/$key-$value";
 				usleep(300000);
 
 				if (is_file($file)) {
@@ -422,7 +423,7 @@ class Command implements CommandInterface
 						)
 					);
 				} else {
-					if ($value == 'id' || str_ends_with('_id', $value)) {
+					if ($value == 'id' || str_ends_with($value, '_id')) {
 						file_put_contents(
 							$file,
 							"TYPE => INT\nLENGTH => 11\nNULL => FALSE\nPRIMARY => TRUE\nAUTO_INCREMENT => TRUE"

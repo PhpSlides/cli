@@ -2,9 +2,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="title" content="PhpSlides | PHP Framework" />
 
-<link rel="apple-touch-icon" href={{ asset('Assets::Icon.png') }} sizes="234x234" />
-<link rel="shortcut icon" href={{ asset('Assets::Icon.png') }} type="image/png" />
-<link rel="icon" href={{ asset('Assets::Icon.png') }} type="image/png" />
+<link rel="apple-touch-icon" href="{{ asset('Assets::Icon.png') }}" sizes="234x234" />
+<link rel="shortcut icon" href="{{ asset('Assets::Icon.png') }}" type="image/png" />
+<link rel="icon" href="{{ asset('Assets::Icon.png') }}" type="image/png" />
 
 <!-- Internal Styling -->
 <style>
