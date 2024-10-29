@@ -411,9 +411,9 @@ class Command implements CommandInterface
 			$total_columns = 0;
 			$columns = mb_split(' ', $column_name);
 
-			foreach ($columns as $key => $value) {
+			foreach ($columns as $value) {
 				$key += 1;
-				$file = "$dir/$key-$value";
+				$file = "$dir/$value.sql";
 				usleep(300000);
 
 				if (is_file($file)) {
